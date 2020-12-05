@@ -1,0 +1,57 @@
+<view class="top-img" style="padding-top:-{{statusBarHeight}}px"></view>
+
+<van-notice-bar left-icon="volume" speed="30" backgroundColor="#ECF9FF" text="一个人一生能积累多少钱，不是取决于他能够赚多少钱，而是取决于他如何投资理财，人找钱不如钱找钱，要知道让钱为你工作，而不是你为钱工作。" />
+<view class="container">
+        <!-- 现金账户 -->
+        <view class="cash commen">
+                <view class="commen_text">现金账户</view>
+                <view class="item" data-accountid="XJ" bindtap="navigateToDetail">
+                        <image class="item_img" mode="widthFix" src="../../images/cash.png"></image>
+                        <view class="item_cash">现金</view>
+                        <view class="item_num">{{cashAccountBalance}}</view>
+                        <image class="item_arrow" mode="widthFix" src="../../images/arrow.png"></image>
+                </view>
+                <van-divider hairline />
+        </view>
+
+        <!-- 信用卡账户 -->
+        <view class="card commen">
+                <view class="commen_text">信用卡账户</view>
+                <block wx:for="{{cards_account}}" wx:for-item="cardItem" wx:key="index">
+                        <view class="item" data-accountid="{{cardItem.accountid}}" bindtap="navigateToDetail">
+                                <image class="item_img" mode="widthFix" src="{{cardItem.imgPath}}"></image>
+                                <view class="item_cash">{{cardItem.name}}</view>
+                                <view class="item_num">{{cardItem.balance}}</view>
+                                <image class="item_arrow" mode="widthFix" src="../../images/arrow.png"></image>
+                        </view>
+                        <van-divider hairline />
+                </block>
+        </view>
+
+        <!-- 金融账户 -->
+        <view class="finance commen">
+                <view class="commen_text">金融账户</view>
+                <view class="item" data-accountid="bankcard" bindtap="navigateToDetail">
+                        <image class="item_img" mode="widthFix" src="../../images/bank_card.png"></image>
+                        <view class="item_cash">银行卡</view>
+                        <view class="item_num">{{bankCardAccount}}</view>
+                        <image class="item_arrow" mode="widthFix" src="../../images/arrow.png"></image>
+                </view>
+                <van-divider hairline />
+        </view>
+
+        <!-- 虚拟账户 -->
+        <view class="virtual commen">
+                <view class="commen_text">虚拟账户</view>
+                <block wx:for="{{virtual_acount}}" wx:for-item="virtualItem" wx:key="index">
+                        <view class="item" data-accountid="{{virtualItem.accountid}}" bindtap="navigateToDetail">
+                                <image class="item_img" mode="widthFix" src="{{virtualItem.imgPath}}"></image>
+                                <view class="item_cash">{{virtualItem.name}}</view>
+                                <view class="item_num">{{virtualItem.balance}}</view>
+                                <image class="item_arrow" mode="widthFix" src="../../images/arrow.png"></image>
+                        </view>
+                        <van-divider hairline />
+                </block>
+        </view>
+
+</view>

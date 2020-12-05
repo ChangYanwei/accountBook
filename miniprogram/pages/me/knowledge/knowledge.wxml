@@ -1,0 +1,31 @@
+<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+                <view class="swiper-item">
+                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                </view>
+        </swiper-item>
+</swiper>
+
+<view class="page">
+        <view class="page__bd">
+                <view class="weui-panel weui-panel_access">
+                        <view class="weui-panel__hd">学如逆水行舟，不进则退。</view>
+
+                        <block wx:for="{{commonSense}}">
+                                <view class="weui-panel__bd">
+                                        <view data-id="{{item._id}}" data-title="{{item.title}}" bindtap="toDetail" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                                                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                                                        <image class="weui-media-box__thumb" src="{{item.picture}}" />
+                                                </view>
+                                                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                                        <view class="weui-media-box__title">{{item.title}}</view>
+                                                        <view class="weui-media-box__desc">{{item.description}}</view>
+                                                </view>
+                                        </view>
+                                </view>
+                        </block>
+
+                </view>
+        </view>
+</view>

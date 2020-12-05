@@ -1,0 +1,23 @@
+.averageGrade{
+	margin-top: 40rpx;
+	text-align: center;
+}
+
+.text{
+	color: red;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+.feedback{
+	margin-top: 10%;
+}
+
+.form{
+	text-align: center;
+}
+
+.rate{
+	margin-top: 10%;
+	margin-bottom: 35rpx;
+}

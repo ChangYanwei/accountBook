@@ -1,0 +1,8 @@
+<view class="container">
+        <view class="title">{{artileData.title}}</view>
+        <image src="{{artileData.picture}}" class="img" mode="wideFix"></image>
+
+        <view class="detail">{{artileData.detail}}</view>
+
+        <view class="use">{{artileData.use}}</view>
+</view>

@@ -1,0 +1,67 @@
+<view>
+        <view class="topBackground"></view>
+
+        <view>
+                <!-- 最外侧  现金账户折叠面板 -->
+                <van-collapse border="{{isBorder}}" value="{{ activeNames }}" bind:change="onItemChange">
+                        <van-collapse-item title="账户余额 {{nowAccountBalance}}元">
+
+
+                                <van-collapse accordion border="{{isBorder}}" value="{{activeNamesYear}}" bind:change="onItemChangeYear">
+                                        <block wx:for="{{yearArray}}" wx:for-item="yearItem" wx:key="index">
+                                                <!-- 年份  折叠面板 -->
+                                                <van-collapse-item border="{{isBorder}}" title="{{yearItem}}年">
+
+                                                        <van-collapse accordion value="{{activeNamesMonth}}" bind:change="onItemChangeMonth">
+                                                                <block wx:for="{{monthArray}}" wx:for-item="monthItem" wx:key="index">
+                                                                        <!-- 月份  折叠面板 -->
+                                                                        <van-collapse-item wx:if="{{monthItem.recordYear == yearItem}}" border="{{isBorder}}" title="{{monthItem.recordMonth}}月">
+
+                                                                                <van-collapse value="{{activeNamesDay}}" bind:change="onItemChangeDay">
+                                                                                        <block wx:for="{{dayArray}}" wx:for-item="dayItem" wx:key="index">
+                                                                                                <!-- 天  折叠面板 -->
+                                                                                                <van-collapse-item wx:if="{{dayItem.recordYear == yearItem && dayItem.recordMonth == monthItem.recordMonth}}" title="{{dayItem.recordDay}}日">
+                                                                                                        <block wx:for="{{nowAccountData}}" wx:for-item="eachRecord" wx:key="index">
+                                                                                                                <!-- <block wx:if="{{yearItem == eachRecord.recordYear}} &&  {{monthItem == eachRecord.record}} "> -->
+                                                                                                                <van-cell wx:if="{{eachRecord.recordYear == yearItem && eachRecord.recordMonth == monthItem.recordMonth  && eachRecord.recordDay == dayItem.recordDay}}" clickable center title="{{eachRecord.billType}}" label="{{eachRecord.recordRemark}}">
+
+                                                                                                                        <!-- 自定义左侧的icon，并设置样式 -->
+                                                                                                                        <view slot="icon">
+                                                                                                                                <van-icon name="{{eachRecord.recordIcon}}" size="20px" custom-style="margin-right:10rpx;" />
+                                                                                                                        </view>
+
+                                                                                                                        <!-- 自定义右侧的value内容 金额 -->
+                                                                                                                        <view class="value-class">{{eachRecord.recordAmount}}</view>
+
+                                                                                                                        <!-- 图片 -->
+                                                                                                                        <!-- <view wx:if="{{eachRecord.recordImg}}">
+                                                                                                                                        <van-icon data-recordimgpath="{{eachRecord.recordImg}}" size="25px" name="{{eachRecord.recordImg}}" bind:click="viewImg" custom-style="postion:absolute;" />
+                                                                                                                                </view> -->
+                                                                                                                        <!-- 图片 -->
+                                                                                                                        <view wx:if="{{eachRecord.recordImg.length > 0}}">
+                                                                                                                                <van-icon data-recordimgpath="{{eachRecord.recordImg}}" info="{{eachRecord.recordImg.length}}" size="25px" name="{{eachRecord.recordImg[0]}}" bind:click="viewImg" custom-style="postion:absolute;right:15rpx;top:10rpx;" />
+                                                                                                                        </view>
+                                                                                                                </van-cell>
+                                                                                                                <!-- </block> -->
+                                                                                                        </block>
+                                                                                                </van-collapse-item>
+                                                                                        </block>
+
+                                                                                </van-collapse>
+
+                                                                        </van-collapse-item>
+                                                                </block>
+                                                        </van-collapse>
+
+                                                </van-collapse-item>
+                                        </block>
+                                </van-collapse>
+
+                        </van-collapse-item>
+                </van-collapse>
+        </view>
+
+</view>
+
+<button class="btn" bindtap="actionsheet" type="primary">记一笔</button>
+<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" actions="{{groups}}" title="请选择记账类型"></mp-actionSheet>

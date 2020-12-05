@@ -1,0 +1,42 @@
+@import '../account/account.wxss';
+.basicinfo {
+        display: flex;
+        flex-direction: row;
+	align-items: center;
+	margin: 80rpx;
+}
+
+.me-top{
+	background-image:url(https://786c-xly-tfjyo-1300271371.tcb.qcloud.la/recordIcons/me-top2.png?sign=4c2248b7597aaa331221c47575552bb0&t=1586051452);
+	width: 100%;
+	height: 230px;
+        background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+.top{
+	width: 100%;
+	height: 260px;
+	
+}
+
+.kungfu{
+	width: 100%;
+	height: 50px;
+	margin-top: 160px;
+}
+.avatar{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-align: center;
+	padding:20rpx;
+}
+
+.avatarImg{
+	width: 60px;
+	height: 60px;
+	border-radius: 100% !important;
+	margin-right: 20rpx;
+}
+
+

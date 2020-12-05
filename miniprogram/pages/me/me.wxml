@@ -1,0 +1,34 @@
+<view class="me-top">
+        <view class="avatar">
+                <image class="kungfu" src="../../images/kungfu.gif"></image>
+        </view>
+</view>
+
+<!-- 已经登录 -->
+<view class="avatar" wx:if="{{isLogin}}">
+        <!-- <open-data id="avatarImg" type="userAvatarUrl"></open-data>
+        <open-data class="nickName" type="userNickName"></open-data> -->
+        <image class="avatarImg" src="{{userInfo.avatarUrl}}" mode="wideFix"> </image>
+        <view class="nickName">{{userInfo.nickName}}</view>
+</view>
+
+<!-- 未登录 -->
+<view class="avatar" wx:if="{{!isLogin}}">
+         <image class="avatarImg" src="{{avatarUrl}}" mode="wideFix"> </image>
+        <view class="nickName">{{nickName}}</view>
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" type="primary">去登录</button>
+</view>
+
+<van-divider dashed />
+<view class="card commen">
+        <view class="commen_text">我的</view>
+        <block wx:for="{{funs}}" wx:for-item="funItem" wx:key="index">
+                <view class="item" data-itemid="{{funItem.itemid}}" bindtap="navigateToDetail">
+                        <image class="item_img" mode="widthFix" src="{{funItem.imgPath}}"></image>
+                        <view class="item_cash">{{funItem.name}}</view>
+                        <image class="item_arrow" mode="widthFix" src="../../images/arrow.png"></image>
+                </view>
+                <van-divider hairline />
+        </block>
+</view>
+

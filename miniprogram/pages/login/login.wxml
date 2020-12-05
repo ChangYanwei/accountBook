@@ -1,0 +1,10 @@
+<view wx:if="{{userInfo == ''}}">
+        <view class="logo">
+                <image class="logoImg" src="../../images/logo.png" mode="widthFix"></image>
+        </view>
+
+        <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" type="primary">开始使用</button>
+        <view class="text">
+                * 申请获得您的公开信息（昵称、头像等）
+        </view>
+</view>

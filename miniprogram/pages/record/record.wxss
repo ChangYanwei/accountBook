@@ -1,0 +1,169 @@
+
+page {
+        width: 100%;
+        height: 100%;
+	
+}
+
+.top{
+	width: 100%;
+	height: 180px;
+}
+
+.container {
+        width: 100%;
+        height: 100%;
+}
+
+.nav {
+        height: 80rpx;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        line-height: 80rpx;
+        font-size: 16px;
+        white-space: nowrap;
+        position: absolute;
+        top: 185px;
+        left: 0;
+        z-index: 99;
+}
+
+.nav-item {
+        width: 20%;
+        display: inline-block;
+        text-align: center;
+}
+
+.active {
+        color: red;
+	font-weight: bold;
+	border-bottom: 1px solid red;
+}
+
+.tab-box {
+        padding-top: 30px;
+        height: 100%;
+        box-sizing: border-box;
+        padding-left: 40rpx;
+}
+
+.tab-content {
+        overflow-y: scroll;
+}
+
+.takephoto{
+	position: absolute;
+	right: 50rpx;
+	top: 25rpx;
+	padding: 10rpx 30rpx;
+	border: 1.5px solid #F5F5F5;
+	border-radius: 10rpx;
+	box-shadow: 4rpx 4rpx #D3D3D3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 100;
+}
+
+.takephoto .takephoto_text{
+	margin-top: 5rpx;
+	color: gray;
+	font-size: 12px;
+	letter-spacing: 2px;
+}
+
+.takephoto image{
+	width: 60rpx;
+	height: 60rpx;
+}
+
+.inputNum input {
+        height: 80px;
+        font-size: 50px;
+}
+
+.line {
+        border-bottom: 2px solid orange;
+}
+
+.inputChoose {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 50rpx;
+	padding: 10rpx 0 30rpx 10rpx;
+        border-bottom: 1px solid rgb(216, 216, 208);
+}
+
+.inputChoose image {
+        width: 35rpx;
+        height: 35rpx;
+        margin-right: 10rpx;
+}
+
+.inputChooseText {
+        padding-right: 60rpx;
+	color: gray;
+}
+
+.onlyArea{
+	overflow-y: auto;
+}
+
+.remark{
+	width: 480rpx;
+}
+
+.yuyinBtn{
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
+}
+
+.btns{
+	display: flex;
+	flex-direction: row;
+}
+
+.transfer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.transferOut{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-right: 70rpx;
+}
+
+.transferIn{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 70rpx;
+}
+
+.transferImg image{
+	width: 60rpx;
+	height: 50rpx;
+}
+
+.transferText{
+	color: gray;
+	font-size: 12px;
+}
+
+#pay-notify{
+	padding: 0;
+	margin: 0;
+}
+
+.saveBtn{
+	margin-bottom: 40rpx;
+}
+
+.imgUpload{
+	margin-bottom: 20rpx;
+}

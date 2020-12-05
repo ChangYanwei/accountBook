@@ -1,0 +1,18 @@
+.logo{
+	text-align: center;
+}
+
+.logoImg{
+	margin-top: 15%;
+	margin-bottom: 60rpx;
+	width:200px;
+	height:200px;
+}
+
+.text{
+	text-align: center;
+	font-size: 13px;
+	color: gray;
+	margin-top: 20rpx;
+}
+

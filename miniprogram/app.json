@@ -1,0 +1,88 @@
+{
+	"pages": [
+		"pages/welcome/welcome",
+		"pages/login/login",
+		"pages/account/account",
+		"pages/daybook/daybook",
+		"pages/record/record",
+		"pages/me/me",
+		"pages/account/accountdetail",
+		"pages/me/rate/rate",
+		"pages/me/map/map",
+		"pages/me/map/mapdetail/mapdetail",
+		"pages/me/service/service",
+		"pages/me/knowledge/knowledge",
+		"pages/me/knowledge/knowledge-detail/knowledge-detail",
+		"pages/me/feedback/feedback"
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "大学生记账本",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "default"
+	},
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#000000",
+		"list": [
+			{
+				"pagePath": "pages/account/account",
+				"text": "账户",
+				"iconPath": "images/account.png",
+				"selectedIconPath": "images/account_selected.png"
+			},
+			{
+				"pagePath": "pages/record/record",
+				"text": "记一笔",
+				"iconPath": "images/add.png",
+				"selectedIconPath": "images/add_selected.png"
+			},
+			{
+				"pagePath": "pages/daybook/daybook",
+				"text": "流水",
+				"iconPath": "images/daybook.png",
+				"selectedIconPath": "images/daybook_selected.png"
+			},
+			{
+				"pagePath": "pages/me/me",
+				"text": "我的",
+				"iconPath": "images/me.png",
+				"selectedIconPath": "images/me_selected.png"
+			}
+		]
+	},
+	"usingComponents": {
+		"van-button": "@vant/weapp/button",
+		"van-cell": "@vant/weapp/cell",
+		"van-cell-group": "@vant/weapp/cell-group",
+		"van-icon": "@vant/weapp/icon",
+		"van-dropdown-menu": "@vant/weapp/dropdown-menu",
+		"van-dropdown-item": "@vant/weapp/dropdown-item",
+		"van-circle": "@vant/weapp/circle",
+		"van-divider": "@vant/weapp/divider",
+		"van-collapse": "@vant/weapp/collapse",
+		"van-collapse-item": "@vant/weapp/collapse-item",
+		"van-tab": "@vant/weapp/tab/index",
+		"van-tabs": "@vant/weapp/tabs/index",
+		"van-notify": "@vant/weapp/notify/index"
+	},
+	"sitemapLocation": "sitemap.json",
+	"style": "v2",
+	"plugins": {
+		"WechatSI": {
+			"version": "0.3.3",
+			"provider": "wx069ba97219f66d99"
+		},
+		"routePlan": {
+			"version": "1.0.3",
+			"provider": "wx50b5593e81dd937a"
+		}
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序定位"
+		}
+	}
+}

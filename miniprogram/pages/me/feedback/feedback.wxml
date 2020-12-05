@@ -1,0 +1,13 @@
+<!-- <button open-type="feedback">意见反馈</button> -->
+<view class="averageGrade">
+        累计<text class="text"> {{count}} </text>次评分    平均评分<text class="text"> {{averageGrade}}</text>
+</view>
+
+<view class="form">
+        <form bindsubmit="rateSubmit">
+                <van-rate custom-class="rate" name="rate" allow-half value="{{ value }}" size="{{ 25 }}" color="#ee0a24" void-color="#eee" void-icon="star" bind:change="onChange" />
+                <button form-type="submit" type="primary">评分</button>
+        </form>
+</view>
+<button class="feedback" open-type="feedback" type="primary" plain>反馈意见</button>
+<!-- <van-button custom-class="feedback" open-type="feedback" type="primary" plain  block>反馈意见</van-button> -->

@@ -1,0 +1,3 @@
+<view class="position">
+	<van-button class="btn" round icon="../../../../images/service2.png" open-type="contact" type="primary">点我立即召唤客服</van-button>
+</view>

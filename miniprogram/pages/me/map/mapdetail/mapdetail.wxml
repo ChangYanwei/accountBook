@@ -1,0 +1,7 @@
+<map class="map" latitude="{{self_latitude}}" longitude="{{self_longitude}}" scale="10" show-scale markers="{{markers}}" polyline="{{polyline}}" include-points="{{includePoints}}" show-location show-compass="true"></map>
+
+<view class="btns">
+        <button size="mini" class="plan" bindtap="routePlan" type="primary" plain>路线规划</button>
+
+        <button class="begin" bindtap="navigate" type="primary">开始导航</button>
+</view>

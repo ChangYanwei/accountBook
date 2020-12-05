@@ -1,0 +1,7 @@
+<view class="logo">
+        <image class="logoImg" src="../../images/logo.png" mode="widthFix"></image>
+</view>
+<!-- <view class="welcome">欢迎使用</view> -->
+<view class="welcomeImg">
+        <image class="welcome-use" src="../../images/welcome-use.png"></image>
+</view>

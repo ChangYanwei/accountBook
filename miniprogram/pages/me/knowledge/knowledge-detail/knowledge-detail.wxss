@@ -1,0 +1,34 @@
+.container{
+	padding: 20rpx 30rpx;
+}
+
+.img{
+	width: 100%;
+	height: 200px;
+	border-radius: 5px;
+	margin-top: 10rpx;
+}
+
+.title{
+	text-align: center;
+	font-size: 22px;
+	font-weight: bolder;
+	letter-spacing: 2px;
+}
+
+.detail{
+	color: gray;
+	border: 1px  dotted black;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 13px;
+	text-indent:2em;
+	text-align: justify;
+	margin-bottom: 20rpx;
+}
+
+.use{
+	font-size: 16px;
+	text-indent:2em;
+	text-align: justify;
+}

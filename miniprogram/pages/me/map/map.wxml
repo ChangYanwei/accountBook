@@ -1,0 +1,16 @@
+<map class="map" latitude="{{self_latitude}}" longitude="{{self_longitude}}" scale="15" markers="{{markers}}" include-points="{{points}}" show-location show-compass="true" bindtap="chooseMarker"></map>
+
+
+<block wx:for="{{nearBank}}">
+        <van-cell custom-class="cell" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}" data-name="{{item.name}}" data-address="{{item.address}}" title="{{item.name}}" size="large" icon="location-o" is-link bind:click="goHere">
+                <!-- 自定义右侧的value内容 金额 -->
+                <view class="value-class">
+                        <view>去这里</view>
+                        <view wx:if="{{item.distance}}">{{item.distance}}米</view>
+                </view>
+        </van-cell>
+</block>
+
+<view wx:if="{{flag}}" class="search">
+	<van-button class="btn" icon="../../../../images/search.png" plain type="primary" round bind:click="searchMore">搜索更多</van-button>
+</view>

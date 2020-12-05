@@ -1,0 +1,331 @@
+<image class="top" src="../../images/record-top.gif"></image>
+<view class="container">
+        <!-- tab导航栏 -->
+        <!-- scroll-left属性可以控制滚动条位置 -->
+        <!-- scroll-with-animation滚动添加动画过渡 -->
+        <scroll-view scroll-x="true" class="nav" scroll-left="{{navScrollLeft}}" scroll-with-animation="{{true}}">
+                <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
+                        <view class="nav-item {{currentTab == idx ?'active':''}}" data-current="{{idx}}" bindtap="switchNav">{{navItem}}</view>
+                </block>
+        </scroll-view>
+
+        <van-notify id="pay-notify" />
+        <van-notify id="income-notify" />
+        <van-notify id="transfer-notify" />
+        <van-notify id="borrow-notify" />
+
+        <!-- 页面内容 -->
+        <swiper class="tab-box" current="{{currentTab}}" duration="300" bindchange="switchTab">
+
+                <!-- ***************支出模块*************** -->
+                <swiper-item class="tab-content">
+                        <form bindsubmit="payFormSubmit">
+                                <view class="inputNum">
+                                        <input name="payAmount" value='{{payInputValue}}' type="digit" bindfocus="payInputFocus" bindblur="payInputBlur" placeholder="{{payAmount}}" placeholder-style="color:green;"></input>
+                                        <view class="line"></view>
+                                </view>
+
+                                <!-- 拍照按钮 -->
+                                <!-- <view class="takephoto" bindtap="chooseImg">
+                                        <image src="../../images/photograph.png"></image>
+                                        <view class="takephoto_text">拍照</view>
+                                </view> -->
+
+                                <!-- 选择账单类型 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/classify.png"></image>
+                                        <view class="inputChooseText">分类</view>
+                                        <!-- 多列选择器 -->
+                                        <picker name="payType" mode="multiSelector" bindchange="bindPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                                                <view>
+                                                        {{multiArray[0][multiIndex[0]]}} > {{multiArray[1][multiIndex[1]]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择支出账户类型 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/wallet.png"></image>
+                                        <view class="inputChooseText">账户</view>
+                                        <!-- 选择器 -->
+                                        <picker name="payAccount" mode="multiSelector" bindchange="bindPayAccountChange" bindcolumnchange="bindPayAccountColumnChange" value="{{payAccountIndex}}" range="{{payAccountArray}}">
+                                                <view>
+                                                        当前选择：{{payAccountArray[1][payAccountIndex[1]]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择支出时间 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/clock.png"></image>
+                                        <view class="inputChooseText">时间</view>
+                                        <!-- 时间选择器 -->
+                                        <picker name="payTime" mode="date" bindchange="bindPayDateChange">
+                                                {{payDate}}
+                                        </picker>
+                                </view>
+
+                                <!-- 添加备注 -->
+                                <view class="inputChoose onlyArea">
+                                        <image src="../../images/remark.png"></image>
+                                        <view class="inputChooseText">备注</view>
+                                        <input name="payRemark" class="remark" value="{{remarkPayContent}}" placeholder="{{remarkPayText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+                                </view>
+
+                                <!-- 语音转文字按钮 -->
+                                <button class="yuyinBtn" type="{{speakBtnType}}" plain="true" bindtouchstart="touchStart" bindtouchend="touchEnd">
+                                        <text wx:if="{{recordState == false}}">按住 说话</text>
+                                        <text wx:else>松开 结束</text>
+                                </button>
+
+                                <button form-type="submit" type="primary" class="saveBtn">保存</button>
+                        </form>
+
+                        <!-- 显示图片 -->
+                        <van-uploader class="imgUpload" file-list="{{ fileList }}" max-count="3" upload-text="上传照片" bind:after-read="afterRead" bind:delete="deleteImg"> </van-uploader>
+
+                </swiper-item>
+
+
+                <!-- ***************收入模块*************** -->
+                <swiper-item class="tab-content">
+                        <form bindsubmit="incomeFormSubmit">
+                                <view class="inputNum">
+                                        <input name="incomeAmount" value='{{incomeInputValue}}' type="digit" bindfocus="incomeInputFocus" bindblur="incomeInputBlur" placeholder="{{incomeAmount}}" placeholder-style="color:green;"></input>
+                                        <view class="line"></view>
+                                </view>
+
+                                <!-- 选择账单类型 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/classify.png"></image>
+                                        <view class="inputChooseText">分类</view>
+                                        <!-- 选择器 -->
+                                        <picker name="incomeType" bindchange="bindIncomePickerChange" value="{{incomeIndex}}" range="{{incomeArray}}">
+                                                <view>
+                                                        收入 > {{incomeArray[incomeIndex]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择收入账户 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/wallet.png"></image>
+                                        <view class="inputChooseText">账户</view>
+                                        <!-- 选择器 -->
+                                        <picker name="incomeAccount" mode="multiSelector" bindchange="bindIncomeAccountChange" bindcolumnchange="bindIncomeAccountColumnChange" value="{{incomeAccountIndex}}" range="{{incomeAccountArray}}">
+                                                <view>
+                                                        {{incomeAccountArray[0][incomeAccountIndex[0]]}} > {{incomeAccountArray[1][incomeAccountIndex[1]]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择收入账单时间 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/clock.png"></image>
+                                        <view class="inputChooseText">时间</view>
+                                        <!-- 时间选择器 -->
+                                        <picker name="incomeTime" mode="date" bindchange="bindIncomeDateChange">
+                                                {{incomeDate}}
+                                        </picker>
+                                </view>
+
+                                <!-- 添加备注 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/remark.png"></image>
+                                        <view class="inputChooseText">备注</view>
+                                        <!-- 多行输入 -->
+                                        <input name="incomeRemark" class="remark" value="{{remarkIncomeContent}}" placeholder="{{remarkIncomeText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+                                </view>
+
+                                <button class="yuyinBtn" type="{{speakBtnType}}" plain="true" bindtouchstart="touchStart" bindtouchend="touchEnd">
+                                        <text wx:if="{{recordState == false}}">按住 说话</text>
+                                        <text wx:else>松开 结束</text>
+                                </button>
+
+                                <button form-type="submit" type="primary" class="saveBtn">保存</button>
+                        </form>
+
+                        <!-- 显示图片 -->
+                        <van-uploader class="imgUpload" file-list="{{ fileList }}" max-count="3" upload-text="上传照片" bind:after-read="afterRead" bind:delete="deleteImg"></van-uploader>
+                </swiper-item>
+
+
+                <!-- ***************转账模块*************** -->
+                <swiper-item class="tab-content">
+                        <form bindsubmit="transferFormSubmit">
+                                <view class="inputNum">
+                                        <input name="transferAmount" value="{{transferInputValue}}" type="digit" bindfocus="transferInputFocus" bindblur="transferInputBlur" placeholder="{{transferAmount}}" placeholder-style="color:green;"></input>
+                                        <view class="line"></view>
+                                </view>
+
+                                <!-- 选择账单类型 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/wallet2.png"></image>
+                                        <view class="inputChooseText">账户</view>
+                                        <!-- 多列选择器 -->
+                                        <picker name="transferType" mode="multiSelector" bindchange="bindTransferPickerChange" bindcolumnchange="bindTransferColumnChange" range="{{multiTransferArray}}">
+                                                <view class="transfer">
+                                                        <view class="transferOut">
+                                                                <view class="transferText">转出</view>
+                                                                {{multiTransferArray[0][multiTransferIndex[0]]}}
+                                                        </view>
+                                                        <view class="transferImg">
+                                                                <image src="../../images/transfer.png"></image>
+                                                        </view>
+                                                        <view class="transferIn">
+                                                                <view class="transferText">转入</view>
+                                                                {{multiTransferArray[1][multiTransferIndex[1]]}}
+                                                        </view>
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择账单时间 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/clock.png"></image>
+                                        <view class="inputChooseText">时间</view>
+                                        <!-- 时间选择器 -->
+                                        <picker name="transferTime" mode="date" bindchange="bindTransferDateChange">
+                                                {{transferDate}}
+                                        </picker>
+                                </view>
+
+                                <!-- 添加备注 -->
+                                <view class="inputChoose onlyArea">
+                                        <image src="../../images/remark.png"></image>
+                                        <view class="inputChooseText">备注</view>
+                                        <!-- 多行输入 -->
+                                        <input name="transferRemark" class="remark" value="{{remarkTransferContent}}" placeholder="{{remarkTransferText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+
+                                </view>
+
+                                <button class="yuyinBtn" type="{{speakBtnType}}" plain="true" bindtouchstart="touchStart" bindtouchend="touchEnd">
+                                        <text wx:if="{{recordState == false}}">按住 说话</text>
+                                        <text wx:else>松开 结束</text>
+                                </button>
+
+                                <button form-type="submit" type="primary" class="saveBtn">保存</button>
+
+                        </form>
+
+                        <!-- 显示图片 -->
+                        <van-uploader class="imgUpload" file-list="{{ fileList }}" max-count="3" upload-text="上传照片" bind:after-read="afterRead" bind:delete="deleteImg"></van-uploader>
+                </swiper-item>
+
+
+                <!-- ***************余额模块*************** -->
+                <swiper-item class="tab-content">
+                        <form bindsubmit="balanceFormSubmit">
+                                <view class="inputNum">
+                                        <input name="balanceAmount" value="{{balanceInputValue}}" type="digit" bindfocus="balanceInputFocus" bindblur="balanceInputBlur" placeholder="{{balanceAmount}}" placeholder-style="color:green;"></input>
+                                        <view class="line"></view>
+                                </view>
+
+                                <!-- 选择账户类型 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/wallet.png"></image>
+                                        <view class="inputChooseText">账户</view>
+                                        <!-- 选择器 -->
+                                        <picker name="balanceAccount" mode="multiSelector" bindchange="bindBalancePickerChange" bindcolumnchange="bindBalanceColumnChange" value="{{balanceIndex}}" range="{{balanceArray}}">
+                                                <view>
+                                                        当前选择：{{balanceArray[1][balanceIndex[1]]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择余额变更时间 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/clock.png"></image>
+                                        <view class="inputChooseText">时间</view>
+                                        <!-- 时间选择器 -->
+                                        <picker name="yueTime" mode="date" bindchange="bindyueDateChange">
+                                                {{yueDate}}
+                                        </picker>
+                                </view>
+
+                                <!-- 添加备注 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/remark.png"></image>
+                                        <view class="inputChooseText">备注</view>
+                                        <!-- 多行输入 -->
+                                        <input name="balanceRemark" class="remark" value="{{remarkBalanceContent}}" placeholder="{{remarkBalanceText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+                                </view>
+
+                                <button class="yuyinBtn" type="{{speakBtnType}}" plain="true" bindtouchstart="touchStart" bindtouchend="touchEnd">
+                                        <text wx:if="{{recordState == false}}">按住 说话</text>
+                                        <text wx:else>松开 结束</text>
+                                </button>
+
+                                <button form-type="submit" type="primary" class="saveBtn">保存</button>
+                                <view>{{userCashAccountData}}</view>
+                        </form>
+
+			<!-- 显示图片 -->
+                        <van-uploader class="imgUpload" file-list="{{ fileList }}" max-count="3" upload-text="上传照片" bind:after-read="afterRead" bind:delete="deleteImg"></van-uploader>
+                </swiper-item>
+
+
+                <!-- ***************借贷模块*************** -->
+                <swiper-item class="tab-content">
+                        <form bindsubmit="borrowFormSubmit">
+                                <view class="inputNum">
+                                        <input name="borrowAmount" value="{{borrowInputValue}}" type="digit" bindfocus="borrowInputFocus" bindblur="borrowInputBlur" placeholder="{{borrowAmount}}" placeholder-style="color:green;"></input>
+                                        <view class="line"></view>
+                                </view>
+
+                                <!-- 借贷存入账户 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/wallet.png"></image>
+                                        <view class="inputChooseText">存入账户</view>
+                                        <!-- 选择器 -->
+                                        <picker name="borrowInAccount" mode="multiSelector" bindchange="bindBorrowPickerChange" bindcolumnchange="bindBorrowColumnChange" value="{{borrowIndex}}" range="{{borrowArray}}">
+                                                <view>
+                                                        {{borrowArray[0][borrowIndex[0]]}} > {{borrowArray[1][borrowIndex[1]]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 向谁借钱 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/borrow_man.png"></image>
+                                        <view class="inputChooseText">向谁借钱</view>
+                                        <!-- 选择器 -->
+                                        <picker name="borrowFormMan" bindchange="bindBorrowManChange" range="{{borrowManArray}}">
+                                                <view>
+                                                        当前选择：{{borrowManArray[borrowManIndex]}}
+                                                </view>
+                                        </picker>
+                                </view>
+
+                                <!-- 选择借贷时间 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/clock.png"></image>
+                                        <view class="inputChooseText">时间</view>
+                                        <!-- 时间选择器 -->
+                                        <picker name="borrowTime" mode="date" bindchange="bindBorrowDateChange">
+                                                {{borrowDate}}
+                                        </picker>
+                                </view>
+
+                                <!-- 添加备注 -->
+                                <view class="inputChoose">
+                                        <image src="../../images/remark.png"></image>
+                                        <view class="inputChooseText">备注</view>
+                                        <!-- 多行输入 -->
+                                        <input name="borrowRemark" class="remark" value="{{remarkBorrowContent}}" placeholder="{{remarkBorrowText}}" bindfocus="remarkFocus" bindblur="remarkBlur"></input>
+                                </view>
+
+                                <button class="yuyinBtn" type="{{speakBtnType}}" plain="true" bindtouchstart="touchStart" bindtouchend="touchEnd">
+                                        <text wx:if="{{recordState == false}}">按住 说话</text>
+                                        <text wx:else>松开 结束</text>
+                                </button>
+
+                                <button form-type="submit" type="primary" class="saveBtn">保存</button>
+                        </form>
+
+                        <!-- 显示图片 -->
+                        <van-uploader class="imgUpload" file-list="{{ fileList }}" max-count="3" upload-text="上传照片" bind:after-read="afterRead" bind:delete="deleteImg"></van-uploader>
+                </swiper-item>
+
+        </swiper>
+</view>

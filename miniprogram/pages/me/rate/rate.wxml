@@ -1,0 +1,74 @@
+<view class="body">
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderCNY}}" value="{{valueCNY}}" bindinput="convertCNY" bindfocus="focusCNY"></input>
+                        <text>CNY</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/china.png"></image>
+                <view class="item_cash">人民币</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderHKD}}" value="{{valueHKD}}" bindinput="convertHKD" bindfocus="focusHKD"></input>
+                        <text>HKD</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/HKG.png"></image>
+                <view class="item_cash">港元</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderMOP}}" value="{{valueMOP}}" bindinput="convertMOP" bindfocus="focusMOP"></input>
+                        <text>MOP</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/Macao.png"></image>
+                <view class="item_cash">澳门元</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderUSD}}" value="{{valueUSD}}" bindinput="convertUSD" bindfocus="focusUSD"></input>
+                        <text>USD</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/America.png"></image>
+                <view class="item_cash">美元</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderEUR}}" value="{{valueEUR}}" bindinput="convertEUR" bindfocus="focusEUR"></input>
+                        <text>EUR</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/EU.png"></image>
+                <view class="item_cash">欧元</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderGBP}}" value="{{valueGBP}}" bindinput="convertGBP" bindfocus="focusGBP"></input>
+                        <text>GBP</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/England.png"></image>
+                <view class="item_cash">英镑</view>
+        </view>
+        <van-divider hairline />
+
+        <view class="item">
+                <view class="amount">
+                        <input type="digit" placeholder="{{placeholderJPY}}" value="{{valueJPY}}" bindinput="convertJPY" bindfocus="focusJPY"></input>
+                        <text>JPY</text>
+                </view>
+                <image class="item_img" mode="widthFix" src=" ../../../images/Japan.png"></image>
+                <view class="item_cash">日元</view>
+        </view>
+        <van-divider hairline />
+        <view class="reminder">
+                温馨提示：兑换计算器的数据、计算结果仅供参考，具体以办理业务或交易实际结果为准
+        </view>
+</view>
