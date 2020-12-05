@@ -21,7 +21,6 @@
 	- 用户上传的图片
 
 ### 体验
-- 微信搜索“大学生记账本”
+- ![微信搜索“大学生记账本”](http://mmbiz.qpic.cn/mmbiz_jpg/U4esm46xrY0Houdm5n481y4CXlpcicFwia6XZgHBU4xp93Ryiba6icDnePehJiaB2Dia2KUjw2gHq44jT8ONePb8Ncew/0?wx_fmt=jpeg)
 - 有关对此小程序的详细功能介绍请点击链接到微信开放社区查看https://developers.weixin.qq.com/community/develop/article/doc/0004caaad78550e49fca811f252813
-- ![微信搜索“大学生记账本”](https://cn.vuejs.org/images/logo.png)
 	
