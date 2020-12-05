@@ -23,5 +23,5 @@
 ### 体验
 - 微信搜索“大学生记账本”
 - 有关对此小程序的详细功能介绍请点击链接到微信开放社区查看https://developers.weixin.qq.com/community/develop/article/doc/0004caaad78550e49fca811f252813
-![微信搜索“大学生记账本”](https://cn.vuejs.org/images/logo.png)
+- ![微信搜索“大学生记账本”](https://cn.vuejs.org/images/logo.png)
 	
